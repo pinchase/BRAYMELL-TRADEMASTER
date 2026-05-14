@@ -110,23 +110,33 @@ TEMPLATES = [
 # DATABASE
 # =========================================================
 
-DATABASE_URL = os.environ.get("DATABASE_URL")
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'brays_db',
+        'USER': 'brays_db_user',
+        'PASSWORD': 'NEsje949F9UeVNdQ3ETYvRUpgS7G33fJ',
+        'HOST': 'dpg-d82ok8vaqgkc739c591g-a',
+        'PORT': '5432',
+    }
+}
+# DATABASE_URL = os.environ.get("DATABASE_URL")
 
-if DATABASE_URL:
-    DATABASES = {
-        "default": dj_database_url.parse(
-            DATABASE_URL,
-            conn_max_age=600,
-            ssl_require=True
-        )
-    }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
+# if DATABASE_URL:
+#     DATABASES = {
+#         "default": dj_database_url.parse(
+#             DATABASE_URL,
+#             conn_max_age=600,
+#             ssl_require=True
+#         )
+#     }
+# else:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": BASE_DIR / "db.sqlite3",
+#         }
+#     }
 
 # =========================================================
 # PASSWORD VALIDATION
