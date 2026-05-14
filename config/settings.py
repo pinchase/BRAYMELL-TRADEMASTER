@@ -110,14 +110,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'brays_db',
-        'USER': 'brays_db_user',
-        'PASSWORD': 'NEsje949F9UeVNdQ3ETYvRUpgS7G33fJ',
-        'HOST': 'dpg-d82ok8vaqgkc739c591g-a',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600
+    )
 }
 
 # Password validation
@@ -182,7 +178,7 @@ SPECTACULAR_SETTINGS = {
 
 CORS_ALLOWED_ORIGINS = []
 
-ALLOWED_HOSTS = ['brays.onrender.com']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -203,6 +199,11 @@ CORS_EXPOSE_HEADERS = [
     'content-type',
     'x-csrftoken',
 ]
+
+CORS_ALLOWED_ORIGINS = os.environ.get(
+    'CORS_ALLOWED_ORIGINS',
+    'http://localhost:3000,http://127.0.0.1:3000'
+).split(',')
 
 
 # API Versioning
@@ -276,6 +277,7 @@ JAZZMIN_UI_TWEAKS = {
 }
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://brays.onrender.com",
-]
+CSRF_TRUSTED_ORIGINS = os.environ.get(
+    'CSRF_TRUSTED_ORIGINS',
+    'http://localhost:3000,http://127.0.0.1:3000'
+).split(',')
