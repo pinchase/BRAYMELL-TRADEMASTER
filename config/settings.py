@@ -1,6 +1,6 @@
 from pathlib import Path
-import os
 import dj_database_url
+import os
 import cloudinary
 
 # =========================================================
@@ -110,16 +110,35 @@ TEMPLATES = [
 # DATABASE
 # =========================================================
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'brays_db',
-        'USER': 'brays_db_user',
-        'PASSWORD': 'NEsje949F9UeVNdQ3ETYvRUpgS7G33fJ',
-        'HOST': 'dpg-d82ok8vaqgkc739c591g-a',
-        'PORT': '5432',
+# =========================================================
+# DATABASE
+# =========================================================
+
+
+
+# Try to get the DATABASE_URL from the environment (Render sets this automatically)
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+if DATABASE_URL:
+    DATABASES = {
+        "default": dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True  # Render requires SSL
+        )
     }
-}
+else:
+    # Fallback for local development if DATABASE_URL is not set
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ.get("DB_NAME", "brays_db"),
+            "USER": os.environ.get("DB_USER", "brays_db_user"),
+            "PASSWORD": os.environ.get("DB_PASSWORD", "your_local_password"),
+            "HOST": os.environ.get("DB_HOST", "localhost"),
+            "PORT": os.environ.get("DB_PORT", "5432"),
+        }
+    }
 # DATABASE_URL = os.environ.get("DATABASE_URL")
 
 # if DATABASE_URL:
