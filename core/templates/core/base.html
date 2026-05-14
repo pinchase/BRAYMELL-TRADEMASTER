@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Braymell delivers route-to-market strategy, retail execution, and brand growth support.">
+    <title>{% block title %}{{ page_title|default:"Braymell" }}{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.jpeg' %}">
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260505a">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+            <a class="brand" href="/" aria-label="Braymell home">
+                <img src="{% static 'images/logo.jpeg' %}" alt="" class="brand-mark">
+                <span>Braymell</span>
+            </a>
+
+            <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="nav-menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span class="sr-only">Toggle menu</span>
+            </button>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="/" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+                <li><a href="/about/" class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a></li>
+                <li><a href="/clients/" class="nav-link {% if request.resolver_match.url_name == 'clients' or request.resolver_match.url_name == 'client-detail' or request.resolver_match.url_name == 'brand-detail' %}active{% endif %}">Clients</a></li>
+                <li><a href="/testimonials/" class="nav-link {% if request.resolver_match.url_name == 'testimonials' %}active{% endif %}">Testimonials</a></li>
+                <li><a href="/contact/" class="nav-link nav-cta {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <section class="footer-block">
+                <a class="footer-brand" href="/">Braymell</a>
+                <p>Route-to-market strategy, retail execution, and growth partnerships for ambitious brands.</p>
+            </section>
+            <section class="footer-block">
+                <h2>Explore</h2>
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/clients/">Clients</a></li>
+                    <li><a href="/testimonials/">Testimonials</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+            </section>
+            <section class="footer-block">
+                <h2>Contact</h2>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@braymell.com">info@braymell.com</a></li>
+                    <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                </ul>
+            </section>
+            <section class="footer-block">
+                <h2>Social</h2>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                    <a href="#" aria-label="Twitter">Twitter</a>
+                    <a href="#" aria-label="Instagram">Instagram</a>
+                </div>
+            </section>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; {% now "Y" %} Braymell. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}?v=20260505a"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

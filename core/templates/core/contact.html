@@ -1,0 +1,97 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container narrow">
+        <p class="eyebrow">Contact</p>
+        <h1>Let’s talk about your market goals.</h1>
+        <p>Send a message and the Braymell team will follow up to understand the opportunity, challenge, and next useful step.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container contact-grid">
+        <form method="post" class="contact-form">
+            {% csrf_token %}
+            <div class="section-heading flush">
+                <p class="eyebrow">Message us</p>
+                <h2>Tell us what you are building.</h2>
+            </div>
+            <label class="field">
+                <span>Full Name *</span>
+                <input type="text" id="name" name="name" autocomplete="name" required>
+            </label>
+            <label class="field">
+                <span>Email Address *</span>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+            </label>
+            <label class="field">
+                <span>Company</span>
+                <input type="text" id="company" name="company" autocomplete="organization">
+            </label>
+            <label class="field">
+                <span>Subject *</span>
+                <input type="text" id="subject" name="subject" required>
+            </label>
+            <label class="field">
+                <span>Message *</span>
+                <textarea id="message" name="message" rows="6" required></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+
+        <aside class="contact-panel">
+            <div>
+                <h2>Contact Information</h2>
+                <p>Reach us directly or use the form for project conversations.</p>
+            </div>
+            <dl class="contact-list">
+                <div>
+                    <dt>Email</dt>
+                    <dd><a href="mailto:info@braymell.com">info@braymell.com</a></dd>
+                    <dd><a href="mailto:hello@braymell.com">hello@braymell.com</a></dd>
+                </div>
+                <div>
+                    <dt>Phone</dt>
+                    <dd><a href="tel:+1234567890">+1 (234) 567-890</a></dd>
+                    <dd><a href="tel:+1987654321">+1 (987) 654-321</a></dd>
+                </div>
+                <div>
+                    <dt>Office Hours</dt>
+                    <dd>Monday - Friday: 9:00 AM - 6:00 PM</dd>
+                    <dd>Saturday: 10:00 AM - 4:00 PM</dd>
+                </div>
+            </dl>
+            <div class="social-links dark">
+                <a href="#">LinkedIn</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<section class="section section-muted">
+    <div class="container connect-grid">
+        <article class="feature-card">
+            <span>Insights</span>
+            <h3>Follow our updates</h3>
+            <p>Stay close to market thinking, retail observations, and activation lessons.</p>
+        </article>
+        <article class="feature-card">
+            <span>Newsletter</span>
+            <h3>Subscribe</h3>
+            <form class="inline-form">
+                <input type="email" placeholder="Your email" aria-label="Your email" required>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </article>
+        <article class="feature-card">
+            <span>Consultation</span>
+            <h3>Schedule a call</h3>
+            <p>Book time with the team to discuss needs, timelines, and fit.</p>
+            <a href="https://calendly.com" target="_blank" rel="noopener" class="text-link">Book a Meeting</a>
+        </article>
+    </div>
+</section>
+{% endblock %}

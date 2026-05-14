@@ -1,0 +1,42 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow">Clients</p>
+        <h1>Companies we support in the market.</h1>
+        <p>Explore the client relationships behind Braymell's route-to-market, retail execution, and activation work.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {% if clients %}
+            <div class="client-grid">
+                {% for client in clients %}
+                    <a class="client-card" href="/clients/{{ client.slug }}/">
+                        <div class="client-logo-box">
+                            {% if client.logo %}
+                                <img src="{{ client.logo.url }}" alt="{{ client.name }}" loading="lazy">
+                            {% else %}
+                                <span class="placeholder">{{ client.name }}</span>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <h2>{{ client.name }}</h2>
+                            {% if client.caption %}
+                                <p>{{ client.caption }}</p>
+                            {% elif client.description %}
+                                <p>{{ client.description|truncatewords:22 }}</p>
+                            {% endif %}
+                            <span class="text-link">View client work</span>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="empty-state">No clients available.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

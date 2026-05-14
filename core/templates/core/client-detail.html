@@ -1,0 +1,138 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<section class="detail-hero client-hero">
+    <div class="container">
+        <a href="/clients/" class="back-link">Back to Clients</a>
+        <div class="detail-hero-grid">
+            <div>
+                <p class="eyebrow">Client work</p>
+                <h1>{{ client.name }}</h1>
+                {% if client.caption %}
+                    <p>{{ client.caption }}</p>
+                {% elif client.description %}
+                    <p>{{ client.description }}</p>
+                {% endif %}
+            </div>
+            <aside class="detail-meta client-meta">
+                {% if client.logo %}
+                    <img src="{{ client.logo.url }}" alt="{{ client.name }}" loading="lazy">
+                {% endif %}
+                <dl>
+                    {% if client.stores_activated %}
+                        <div>
+                            <dt>Activation Footprint</dt>
+                            <dd>{{ client.stores_activated }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if client.team_size %}
+                        <div>
+                            <dt>Team Size</dt>
+                            <dd>{{ client.team_size }}</dd>
+                        </div>
+                    {% endif %}
+                    <div>
+                        <dt>Brand Portfolio</dt>
+                        <dd>{{ brands|length }} brand{{ brands|length|pluralize }}</dd>
+                    </div>
+                </dl>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container content-grid">
+        <article class="case-narrative">
+            {% if client.description %}
+                <section class="story-block">
+                    <span>01</span>
+                    <div>
+                        <h2>Company Context</h2>
+                        <p>{{ client.description }}</p>
+                    </div>
+                </section>
+            {% endif %}
+
+            {% if client.objective %}
+                <section class="story-block">
+                    <span>02</span>
+                    <div>
+                        <h2>Objective</h2>
+                        <p>{{ client.objective }}</p>
+                    </div>
+                </section>
+            {% endif %}
+
+            {% if client.work_done %}
+                <section class="story-block">
+                    <span>03</span>
+                    <div>
+                        <h2>What Braymell Did</h2>
+                        <p>{{ client.work_done }}</p>
+                    </div>
+                </section>
+            {% endif %}
+
+            {% if client.achievement %}
+                <section class="story-block">
+                    <span>04</span>
+                    <div>
+                        <h2>Achievement</h2>
+                        <p>{{ client.achievement }}</p>
+                    </div>
+                </section>
+            {% endif %}
+        </article>
+    </div>
+</section>
+
+<section class="section section-muted">
+    <div class="container section-heading">
+        <p class="eyebrow"></p>
+        <h2>Brands under {{ client.name }}.</h2>
+    </div>
+    <div class="container">
+        {% if brands %}
+            <div class="logo-carousel brand-carousel" aria-label="{{ client.name }} brands">
+                {% for brand in brands %}
+                    <a class="logo-tile logo-tile-link brand-tile" href="/brands/{{ brand.slug }}/">
+                        {% if brand.logo %}
+                            <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" loading="lazy">
+                        {% else %}
+                            <span class="placeholder eyebrow">{{ brand.name }}</span>
+                        {% endif %}
+                        <strong>{{ brand.name }}</strong>
+                        {% if brand.caption %}
+                            <small>{{ brand.caption }}</small>
+                        {% endif %}
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="empty-state">No brands have been added for this client yet.</p>
+        {% endif %}
+    </div>
+</section>
+
+{% if other_clients %}
+<section class="section">
+    <div class="container section-heading">
+        <p class="eyebrow">More clients</p>
+        <h2>Other companies we support.</h2>
+    </div>
+    <div class="container logo-carousel">
+        {% for other_client in other_clients %}
+            <a class="logo-tile logo-tile-link" href="/clients/{{ other_client.slug }}/">
+                {% if other_client.logo %}
+                    <img src="{{ other_client.logo.url }}" alt="{{ other_client.name }}" loading="lazy">
+                {% else %}
+                    <span class="placeholder">{{ other_client.name }}</span>
+                {% endif %}
+                <strong>{{ other_client.name }}</strong>
+            </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<section class="hero hero-home">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <p class="eyebrow">Route-to-market specialists</p>
+            <h1>Winning at retail with sharper strategy and stronger execution.</h1>
+            <p>Braymell helps brands enter markets, build distribution, activate consumers, and measure the work that drives growth.</p>
+            <div class="hero-actions">
+                <a href="/clients/" class="btn btn-primary">View Clients</a>
+                <a href="/contact/" class="btn btn-ghost">Start a Conversation</a>
+            </div>
+        </div>
+        <div class="hero-panel" aria-label="Braymell capabilities">
+            <div>
+                <span class="metric">01</span>
+                <strong>Market strategy</strong>
+                <p>Commercial planning rooted in local routes, channels, and buying behavior.</p>
+            </div>
+            <div>
+                <span class="metric">02</span>
+                <strong>Retail execution</strong>
+                <p>Practical activation systems that keep brands visible and available.</p>
+            </div>
+            <div>
+                <span class="metric">03</span>
+                <strong>Measured growth</strong>
+                <p>Clear outcomes across sales, distribution, awareness, and repeatability.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container section-heading">
+        <p class="eyebrow">What we do</p>
+        <h2>Commercial support across the full route to market.</h2>
+    </div>
+    <div class="container feature-grid">
+        <article class="feature-card">
+            <span>Strategy</span>
+            <h3>Market Entry</h3>
+            <p>Position brands for launch, expansion, and distributor alignment with practical market plans.</p>
+        </article>
+        <article class="feature-card">
+            <span>Execution</span>
+            <h3>Distribution</h3>
+            <p>Build channel coverage, field activity, retail presence, and sales enablement systems.</p>
+        </article>
+        <article class="feature-card">
+            <span>Growth</span>
+            <h3>Brand Activation</h3>
+            <p>Create campaigns and trade programs that convert attention into measurable commercial progress.</p>
+        </article>
+    </div>
+</section>
+
+<section class="section section-muted">
+    <div class="container section-heading section-heading-row">
+        <div>
+            <p class="eyebrow">Client voice</p>
+            <h2>What partners say about the work.</h2>
+        </div>
+        <a href="/testimonials/" class="text-link">View all</a>
+    </div>
+    <div class="container">
+        {% if testimonials %}
+            <div class="testimonials-grid">
+                {% for testimonial in testimonials %}
+                    {% include "core/partials/testimonial-card.html" with testimonial=testimonial %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="empty-state">No testimonials available.</p>
+        {% endif %}
+    </div>
+</section>
+
+<section class="section">
+    <div class="container section-heading section-heading-row">
+        <div>
+            <p class="eyebrow">Clients</p>
+            <h2>Companies that trust us with market execution.</h2>
+        </div>
+        <a href="/clients/" class="text-link">View all</a>
+    </div>
+    <div class="container">
+        {% if clients %}
+            <div class="logo-carousel" aria-label="Client logos">
+                {% for client in clients %}
+                    <a class="logo-tile logo-tile-link" href="/clients/{{ client.slug }}/" title="{{ client.name }}">
+                        {% if client.logo %}
+                            <img src="{{ client.logo.url }}" alt="{{ client.name }}" loading="lazy">
+                        {% else %}
+                            <span class="placeholder">{{ client.name }}</span>
+                        {% endif %}
+                        <strong>{{ client.name }}</strong>
+                        {% if client.caption %}
+                            <small>{{ client.caption }}</small>
+                        {% endif %}
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="empty-state">No client logos available.</p>
+        {% endif %}
+    </div>
+</section>
+
+<section class="cta-band">
+    <div class="container cta-content">
+        <div>
+            <p class="eyebrow">Ready when you are</p>
+            <h2>Let’s shape a route-to-market plan that can actually move.</h2>
+        </div>
+        <a href="/contact/" class="btn btn-light">Get In Touch</a>
+    </div>
+</section>
+{% endblock %}

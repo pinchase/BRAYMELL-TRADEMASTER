@@ -1,0 +1,25 @@
+<article class="testimonial-card">
+    <div class="testimonial-head">
+        <div class="avatar">
+            {% if testimonial.image %}
+                <img src="{{ testimonial.image.url }}" alt="{{ testimonial.client_name }}" loading="lazy">
+            {% else %}
+                <span>{{ testimonial.client_name|first|upper }}</span>
+            {% endif %}
+        </div>
+        <div>
+            <h3>{{ testimonial.client_name }}</h3>
+            <p>
+                {% if testimonial.position %}{{ testimonial.position }}{% endif %}
+                {% if testimonial.position and testimonial.company %}, {% endif %}
+                {{ testimonial.company }}
+            </p>
+        </div>
+    </div>
+    <div class="rating" aria-label="{{ testimonial.rating }} out of 5 stars">
+        {% for i in "x"|rjust:"5"|make_list %}
+            {% if forloop.counter <= testimonial.rating %}<span>★</span>{% else %}<span class="muted-star">★</span>{% endif %}
+        {% endfor %}
+    </div>
+    <blockquote>{{ testimonial.message }}</blockquote>
+</article>

@@ -1,0 +1,128 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<section class="detail-hero brand-hero">
+    <div class="container">
+        <a href="/clients/{{ brand.client.slug }}/" class="back-link">Back to {{ brand.client.name }}</a>
+        <div class="detail-hero-grid">
+            <div>
+                <p class="eyebrow">Brand work</p>
+                <h1>{{ brand.name }}</h1>
+                {% if brand.caption %}
+                    <p>{{ brand.caption }}</p>
+                {% elif brand.client.caption %}
+                    <p>{{ brand.client.caption }}</p>
+                {% endif %}
+            </div>
+            <aside class="detail-meta brand-meta">
+                {% if brand.logo %}
+                    <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" loading="lazy">
+                {% endif %}
+                <dl>
+                    <div>
+                        <dt>Client</dt>
+                        <dd>{{ brand.client.name }}</dd>
+                    </div>
+                    {% if brand.client.stores_activated %}
+                        <div>
+                            <dt>Activation Footprint</dt>
+                            <dd>{{ brand.client.stores_activated }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if brand.client.team_size %}
+                        <div>
+                            <dt>Team Size</dt>
+                            <dd>{{ brand.client.team_size }}</dd>
+                        </div>
+                    {% endif %}
+                </dl>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container content-grid">
+        <article class="case-narrative brand-narrative">
+            {% if brand.objective %}
+                <section class="story-block story-feature">
+                    <span>01</span>
+                    <div>
+                        <h2>Objective</h2>
+                        <p>{{ brand.objective }}</p>
+                    </div>
+                </section>
+            {% endif %}
+
+            {% if brand.execution %}
+                <section class="story-block story-feature">
+                    <span>02</span>
+                    <div>
+                        <h2>Execution</h2>
+                        <p>{{ brand.execution }}</p>
+                    </div>
+                </section>
+            {% endif %}
+
+            {% if brand.outcome %}
+                <section class="story-block story-feature">
+                    <span>03</span>
+                    <div>
+                        <h2>Outcome</h2>
+                        <p>{{ brand.outcome }}</p>
+                    </div>
+                </section>
+            {% endif %}
+        </article>
+    </div>
+</section>
+
+{% if images %}
+<section class="section section-muted">
+    <div class="container section-heading">
+        <p class="eyebrow">Field proof</p>
+        <h2>Images from the work.</h2>
+    </div>
+    <div class="container">
+        <div class="gallery-grid brand-gallery">
+            {% for image in images %}
+                <button class="gallery-item" type="button" data-lightbox-src="{{ image.image.url }}" data-lightbox-alt="{{ image.caption|default:brand.name }}">
+                    <img src="{{ image.image.url }}" alt="{{ image.caption|default:brand.name }}" loading="lazy">
+                    {% if image.caption %}
+                        <span>{{ image.caption }}</span>
+                    {% endif %}
+                </button>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Close image">x</button>
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous image">&lsaquo;</button>
+    <img class="lightbox-image" src="" alt="">
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="Next image">&rsaquo;</button>
+</div>
+{% endif %}
+
+{% if related_brands %}
+<section class="section">
+    <div class="container section-heading">
+        <p class="eyebrow">More brands</p>
+        <h2>Other {{ brand.client.name }} brand work.</h2>
+    </div>
+    <div class="container logo-carousel brand-carousel">
+        {% for related_brand in related_brands %}
+            <a class="logo-tile logo-tile-link brand-tile" href="/brands/{{ related_brand.slug }}/">
+                {% if related_brand.logo %}
+                    <img src="{{ related_brand.logo.url }}" alt="{{ related_brand.name }}" loading="lazy">
+                {% else %}
+                    <span class="placeholder">{{ related_brand.name }}</span>
+                {% endif %}
+                <strong>{{ related_brand.name }}</strong>
+            </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% endblock %}
