@@ -1,21 +1,25 @@
-"""Django's command-line utility for administrative tasks."""
+#!/usr/bin/env python
 import os
 import sys
+import traceback
 
-
-def main():
-    """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+if __name__ == '__main__':
+    print(f"🔍 DJANGO_SETTINGS_MODULE: {os.environ.get('DJANGO_SETTINGS_MODULE')}", file=sys.stderr)
+    
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
-        raise ImportError(
-            "Couldn't import Django. Are you sure it's installed and "
-            "available on your PYTHONPATH environment variable? Did you "
-            "forget to activate a virtual environment?"
-        ) from exc
+        print(f"❌ Django import failed: {exc}", file=sys.stderr)
+        traceback.print_exc(file=sys.stderr)
+        sys.exit(1)
+    
+    # Try to import settings explicitly
+    try:
+        from django.conf import settings
+        print(f"✅ Settings loaded. INSTALLED_APPS: {settings.INSTALLED_APPS}", file=sys.stderr)
+    except Exception as e:
+        print(f"❌ Settings import failed: {e}", file=sys.stderr)
+        traceback.print_exc(file=sys.stderr)
+        sys.exit(1)
+    
     execute_from_command_line(sys.argv)
-
-
-if __name__ == '__main__':
-    main()
