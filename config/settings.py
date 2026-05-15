@@ -249,3 +249,6 @@ JAZZMIN_UI_TWEAKS = {
     "action_button_style": "squared-0",
     "actions_sticky_top": True,
 }
+
+USE_X_FORWARDED_HOST = True
+SITE_ID = 1

@@ -130,4 +130,33 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    /* ── SFA Modal ───────────────────────────────────────── */
+    const sfaModal = document.getElementById("sfa-modal");
+    const sfaOpenBtns = document.querySelectorAll(".sfa-modal-open");
+    const sfaCloseBtn = document.getElementById("sfa-modal-close");
+
+    function openSfaModal() {
+        if (!sfaModal) return;
+        sfaModal.classList.add("active");
+        sfaModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        sfaCloseBtn && sfaCloseBtn.focus();
+    }
+
+    function closeSfaModal() {
+        if (!sfaModal) return;
+        sfaModal.classList.remove("active");
+        sfaModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+    }
+
+    sfaOpenBtns.forEach(btn => btn.addEventListener("click", openSfaModal));
+    if (sfaCloseBtn) sfaCloseBtn.addEventListener("click", closeSfaModal);
+    if (sfaModal) {
+        sfaModal.addEventListener("click", (e) => { if (e.target === sfaModal) closeSfaModal(); });
+    }
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && sfaModal && sfaModal.classList.contains("active")) closeSfaModal();
+    });
+
 });

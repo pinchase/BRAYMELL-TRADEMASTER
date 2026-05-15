@@ -1,5 +1,103 @@
 {% extends "core/base.html" %}
 
+{% block meta %}
+<!-- Primary Meta Tags -->
+<meta name="title" content="Braymell Trade Masters Ltd - Route-to-Market & Retail Execution Experts">
+<meta name="description" content="Braymell Trade Masters Ltd provides end-to-end commercial services including route-to-market strategy, retail auditing, sales force automation, and field sales execution for brands seeking measurable market growth.">
+<meta name="keywords" content="route to market, retail auditing, sales force automation, field sales, brand activation, market strategy, retail execution, Braymell Trade Masters">
+<meta name="author" content="Braymell Trade Masters Ltd">
+<meta name="robots" content="index, follow">
+<meta name="language" content="English">
+<meta name="revisit-after" content="7 days">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="Braymell Trade Masters Ltd - Practical Market Growth for Brands">
+<meta property="og:description" content="Strategic route-to-market, retail auditing, and field execution services that turn market ambition into measurable traction.">
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}/static/images/og-image.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="{{ request.build_absolute_uri }}">
+<meta property="twitter:title" content="Braymell Trade Masters Ltd - Practical Market Growth for Brands">
+<meta property="twitter:description" content="Strategic route-to-market, retail auditing, and field execution services that turn market ambition into measurable traction.">
+<meta property="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}/static/images/og-image.jpg">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+<!-- Schema.org markup for Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Braymell Trade Masters Ltd",
+  "url": "{{ request.build_absolute_uri|slice:':-1' }}",
+  "logo": "{{ request.scheme }}://{{ request.get_host }}/static/images/logo.png",
+  "description": "Braymell Trade Masters Ltd provides end-to-end route-to-market services, retail auditing, sales force automation, and field sales execution for brands seeking practical market growth.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "Kenya"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/braymell-trade-masters",
+    "https://twitter.com/braymell"
+  ]
+}
+</script>
+
+<!-- Service-specific Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Route To Market",
+      "description": "Tailored distribution frameworks connecting brands with existing and potential consumers"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Retail Auditing",
+      "description": "Comprehensive tracking and analysis of sales performance with advanced scoring systems"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Sales Force Automation",
+      "description": "Automated data capture, analysis, and reporting with real-time monitoring capabilities"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Strategy & Optimization",
+      "description": "Data-driven marketing and operational strategies for maximum efficiency"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "In-Store Activation",
+      "description": "Brand ambassador programs for impactful in-store consumer engagement"
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "name": "Field Sales",
+      "description": "Dedicated sales teams ensuring seamless product distribution and merchandising"
+    }
+  ]
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <section class="page-hero">
     <div class="container narrow">
@@ -16,49 +114,128 @@
             <h2>A partner for the long route, not just the launch moment.</h2>
         </div>
         <div class="prose">
-            <p>Braymell was founded on a simple belief: brands deserve more than market entry strategies. They need partners who understand their vision, respect their challenges, and commit to long-term success.</p>
+            <p>Braymell Trade Masters Ltd was founded on a simple belief: brands deserve more than market entry strategies. They need partners who understand their vision, respect their challenges, and commit to long-term success.</p>
             <p>Our approach combines strategic planning, field execution, and data-informed learning so each project becomes easier to repeat, scale, and improve.</p>
         </div>
     </div>
 </section>
 
-<section class="section section-muted">
+<!-- Services -->
+<section class="section section-muted" aria-labelledby="services-heading">
     <div class="container section-heading">
-        <p class="eyebrow">Values</p>
-        <h2>How we work with clients.</h2>
+        <p class="eyebrow">What We Do</p>
+        <h2 id="services-heading">End-to-end commercial services across the full route to market.</h2>
+    </div>
+    <div class="container services-grid">
+
+        <article class="service-card" itemscope itemtype="https://schema.org/Service">
+            <div class="service-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
+            </div>
+            <h3 itemprop="name">Route To Market</h3>
+            <p itemprop="description">Braymell Trade Masters Ltd collaborates closely with clients to analyze, design, and implement tailored route-to-market strategies. By leveraging local market insights, we ensure seamless distribution frameworks that connect brands with both existing and potential consumers effectively.</p>
+        </article>
+
+        <article class="service-card" itemscope itemtype="https://schema.org/Service">
+            <div class="service-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <h3 itemprop="name">Retail Auditing</h3>
+            <p itemprop="description">Our retail auditing services provide comprehensive tracking and analysis of sales performance. Utilizing advanced tools and refined methodologies, we implement tailored scoring systems to optimize in-store execution, driving measurable improvements in consumer behavior and sales outcomes.</p>
+        </article>
+
+        <article class="service-card" itemscope itemtype="https://schema.org/Service">
+            <div class="service-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+            </div>
+            <h3 itemprop="name">Sales Force Automation</h3>
+            <p itemprop="description">Through cutting-edge technology, we simplify sales force processes by automating data capture, analysis, and reporting. Our robust tools enable real-time monitoring and actionable insights, enhancing efficiency and decision-making in retail operations.</p>
+            <button class="btn btn-primary sfa-modal-open" type="button" style="margin-top:1rem;" aria-haspopup="dialog" aria-label="Learn more about Sales Force Automation services">Discover More</button>
+        </article>
+
+        <article class="service-card" itemscope itemtype="https://schema.org/Service">
+            <div class="service-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+            </div>
+            <h3 itemprop="name">Strategy &amp; Optimization</h3>
+            <p itemprop="description">We design data-driven marketing and operational strategies that prioritize efficiency. By focusing on the right information at the right time, we reduce operational clutter and streamline efforts to maximize both field and office productivity.</p>
+        </article>
+
+        <article class="service-card" itemscope itemtype="https://schema.org/Service">
+            <div class="service-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3 itemprop="name">In-Store Activation</h3>
+            <p itemprop="description">Our team of brand ambassadors specializes in creating impactful in-store activations that enhance brand visibility, drive awareness, and influence consumer purchasing decisions directly at the point of sale.</p>
+        </article>
+
+        <article class="service-card" itemscope itemtype="https://schema.org/Service">
+            <div class="service-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <h3 itemprop="name">Field Sales</h3>
+            <p itemprop="description">Our dedicated field sales teams, equipped with motorcycles, bicycles, and vans, ensure seamless product distribution and merchandising. From engaging traders to servicing point-of-sale needs, we deliver consistent and impactful retail experiences.</p>
+        </article>
+
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="section" aria-labelledby="why-choose-heading">
+    <div class="container section-heading">
+        <p class="eyebrow">Why Choose Us</p>
+        <h2 id="why-choose-heading">At Braymell Trade Masters Ltd, we help brands grow through smart solutions.</h2>
     </div>
     <div class="container values-grid">
-        <article class="value-card">
+        <article class="value-card" itemscope itemtype="https://schema.org/Organization">
+            <div class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h3 itemprop="name">Expertise in the Market</h3>
+            <p itemprop="description">With years of experience in the retail and distribution sector, we bring unparalleled knowledge and expertise to every project.</p>
+        </article>
+        <article class="value-card" itemscope itemtype="https://schema.org/Thing">
+            <div class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3>Results-Driven Approach</h3>
+            <p>Our strategies are focused on measurable outcomes, ensuring long-term success and growth for your brand.</p>
+        </article>
+        <article class="value-card" itemscope itemtype="https://schema.org/Thing">
+            <div class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <h3>Innovative Solutions</h3>
+            <p>We leverage cutting-edge technology and data-driven insights to provide tailored solutions for your business needs.</p>
+        </article>
+        <article class="value-card" itemscope itemtype="https://schema.org/Thing">
+            <div class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Client-Centric Service</h3>
+            <p>Your satisfaction is our priority. We work closely with you to understand your goals and deliver solutions that exceed expectations.</p>
+        </article>
+        <article class="value-card" itemscope itemtype="https://schema.org/Thing">
+            <div class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
             <h3>Excellence</h3>
-            <p>We bring high standards to planning, execution, reporting, and client communication.</p>
+            <p>We bring high standards to planning, execution, reporting, and client communication at every stage of the engagement.</p>
         </article>
-        <article class="value-card">
-            <h3>Partnership</h3>
-            <p>We treat every brief as shared work, with clear ownership and steady collaboration.</p>
-        </article>
-        <article class="value-card">
-            <h3>Innovation</h3>
-            <p>We adapt tools and methods as markets change, without losing sight of commercial basics.</p>
-        </article>
-        <article class="value-card">
-            <h3>Integrity</h3>
-            <p>We communicate plainly, report honestly, and protect the trust required for growth work.</p>
-        </article>
-        <article class="value-card">
-            <h3>Growth</h3>
-            <p>We look for progress that compounds across brand presence, capability, and results.</p>
-        </article>
-        <article class="value-card">
-            <h3>Impact</h3>
-            <p>We measure success by concrete market outcomes, not activity for its own sake.</p>
+        <article class="value-card" itemscope itemtype="https://schema.org/Thing">
+            <div class="service-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h3>Transparency &amp; Integrity</h3>
+            <p>We communicate plainly, report honestly, and protect the trust required for long-term growth work.</p>
         </article>
     </div>
 </section>
 
-<section class="section">
+<section class="section section-muted" aria-labelledby="expertise-heading">
     <div class="container section-heading">
         <p class="eyebrow">Expertise</p>
-        <h2>Focused capabilities for route-to-market work.</h2>
+        <h2 id="expertise-heading">Focused capabilities for route-to-market work.</h2>
     </div>
     <div class="container expertise-list">
         <div>Market Strategy</div>
@@ -66,17 +243,35 @@
         <div>Brand Positioning</div>
         <div>Sales Enablement</div>
         <div>Marketing Campaigns</div>
-        <div>Data and Analytics</div>
+        <div>Data &amp; Analytics</div>
+        <div>Retail Auditing</div>
+        <div>In-Store Activation</div>
+        <div>Sales Force Automation</div>
     </div>
 </section>
 
-<section class="cta-band">
+<section class="cta-band" aria-labelledby="cta-heading">
     <div class="container cta-content">
         <div>
             <p class="eyebrow">Work with us</p>
-            <h2>Ready to improve your go-to-market motion?</h2>
+            <h2 id="cta-heading">Ready to improve your go-to-market motion?</h2>
         </div>
-        <a href="/contact/" class="btn btn-light">Get In Touch</a>
+        <a href="/contact/" class="btn btn-light" aria-label="Contact Braymell Trade Masters to discuss your go-to-market needs">Get In Touch</a>
     </div>
 </section>
+
+<!-- Sales Force Automation Modal -->
+<div class="modal-overlay" id="sfa-modal" aria-modal="true" role="dialog" aria-label="More about Sales Force Automation" aria-hidden="true">
+    <div class="modal-box">
+        <button class="modal-close" id="sfa-modal-close" aria-label="Close dialog">&times;</button>
+        <div class="service-icon" style="margin-bottom:1rem;" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+        </div>
+        <p class="eyebrow">Sales Force Automation</p>
+        <h2>More About Sales Force Automation</h2>
+        <p>Our Sales Force Automation system revolutionizes retail operations by automating repetitive tasks such as data collection, reporting, and performance tracking. This enables your team to focus on strategy and customer engagement while leveraging real-time insights for decision-making.</p>
+        <p>With offline capabilities, the system ensures seamless functionality even in areas with limited connectivity — keeping your field team productive wherever they are.</p>
+        <a href="/contact/" class="btn btn-primary" style="margin-top:0.5rem;" aria-label="Contact us about Sales Force Automation services">Talk to Us About SFA</a>
+    </div>
+</div>
 {% endblock %}
