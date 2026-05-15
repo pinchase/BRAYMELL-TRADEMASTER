@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    /* ── Mobile nav ─────────────────────────────────────── */
     const menuToggle = document.getElementById("menu-toggle");
     const navMenu = document.getElementById("nav-menu");
 
@@ -7,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const isOpen = navMenu.classList.toggle("active");
             menuToggle.setAttribute("aria-expanded", String(isOpen));
         });
-
         navMenu.querySelectorAll("a").forEach((link) => {
             link.addEventListener("click", () => {
                 navMenu.classList.remove("active");
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    /* ── Contact form — inline error messages ───────────── */
     const contactForm = document.querySelector(".contact-form");
     if (contactForm) {
         contactForm.addEventListener("submit", (event) => {
@@ -39,11 +41,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (hasError) {
                 event.preventDefault();
-                alert("Please fill out the required fields with valid details.");
+                let errorBox = contactForm.querySelector(".form-error");
+                if (!errorBox) {
+                    errorBox = document.createElement("p");
+                    errorBox.className = "form-error";
+                    contactForm.prepend(errorBox);
+                }
+                // Re-trigger shake animation
+                errorBox.style.animation = "none";
+                errorBox.offsetHeight; // reflow
+                errorBox.style.animation = "";
+                errorBox.textContent = "Please fill out all required fields with valid details.";
+                errorBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
             }
         });
     }
 
+    /* ── Lightbox ────────────────────────────────────────── */
     const galleryButtons = Array.from(document.querySelectorAll("[data-lightbox-src]"));
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = lightbox ? lightbox.querySelector(".lightbox-image") : null;
@@ -53,10 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentIndex = 0;
 
     function showImage(index) {
-        if (!lightbox || !lightboxImage || galleryButtons.length === 0) {
-            return;
-        }
-
+        if (!lightbox || !lightboxImage || galleryButtons.length === 0) return;
         currentIndex = (index + galleryButtons.length) % galleryButtons.length;
         const activeButton = galleryButtons[currentIndex];
         lightboxImage.src = activeButton.dataset.lightboxSrc;
@@ -67,55 +78,56 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function closeLightbox() {
-        if (!lightbox || !lightboxImage) {
-            return;
-        }
-
+        if (!lightbox || !lightboxImage) return;
         lightbox.classList.remove("active");
         lightbox.setAttribute("aria-hidden", "true");
         lightboxImage.src = "";
         document.body.style.overflow = "";
     }
 
-    galleryButtons.forEach((button, index) => {
-        button.addEventListener("click", () => showImage(index));
+    galleryButtons.forEach((button, index) => button.addEventListener("click", () => showImage(index)));
+    if (closeButton) closeButton.addEventListener("click", closeLightbox);
+    if (prevButton) prevButton.addEventListener("click", () => showImage(currentIndex - 1));
+    if (nextButton) nextButton.addEventListener("click", () => showImage(currentIndex + 1));
+    if (lightbox) {
+        lightbox.addEventListener("click", (event) => { if (event.target === lightbox) closeLightbox(); });
+    }
+    document.addEventListener("keydown", (event) => {
+        if (!lightbox || !lightbox.classList.contains("active")) return;
+        if (event.key === "Escape") closeLightbox();
+        if (event.key === "ArrowLeft") showImage(currentIndex - 1);
+        if (event.key === "ArrowRight") showImage(currentIndex + 1);
     });
 
-    if (closeButton) {
-        closeButton.addEventListener("click", closeLightbox);
-    }
-
-    if (prevButton) {
-        prevButton.addEventListener("click", () => showImage(currentIndex - 1));
-    }
-
-    if (nextButton) {
-        nextButton.addEventListener("click", () => showImage(currentIndex + 1));
-    }
-
-    if (lightbox) {
-        lightbox.addEventListener("click", (event) => {
-            if (event.target === lightbox) {
-                closeLightbox();
+    /* ── Scroll-reveal ───────────────────────────────────── */
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                revealObserver.unobserve(entry.target);
             }
+        });
+    }, { threshold: 0.1 });
+
+    const revealTargets = document.querySelectorAll(
+        ".section, .feature-card, .value-card, .project-card, " +
+        ".testimonial-card, .client-card, .step-card, .stat-item, " +
+        ".story-block, .expertise-list > div"
+    );
+    revealTargets.forEach((el) => {
+        el.classList.add("reveal");
+        revealObserver.observe(el);
+    });
+
+    /* ── Back to top ─────────────────────────────────────── */
+    const backTop = document.getElementById("back-top");
+    if (backTop) {
+        window.addEventListener("scroll", () => {
+            backTop.classList.toggle("visible", window.scrollY > 400);
+        }, { passive: true });
+        backTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
 
-    document.addEventListener("keydown", (event) => {
-        if (!lightbox || !lightbox.classList.contains("active")) {
-            return;
-        }
-
-        if (event.key === "Escape") {
-            closeLightbox();
-        }
-
-        if (event.key === "ArrowLeft") {
-            showImage(currentIndex - 1);
-        }
-
-        if (event.key === "ArrowRight") {
-            showImage(currentIndex + 1);
-        }
-    });
 });

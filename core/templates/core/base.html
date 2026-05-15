@@ -5,12 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Braymell delivers route-to-market strategy, retail execution, and brand growth support.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% block og_title %}{{ page_title|default:'Braymell' }}{% endblock %}">
+    <meta property="og:description" content="Route-to-market strategy, retail execution, and brand growth support.">
+    <meta property="og:image" content="{% static 'images/logo.jpeg' %}">
+    <meta property="og:type" content="website">
+
     <title>{% block title %}{{ page_title|default:"Braymell" }}{% endblock %}</title>
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{% static 'images/logo.jpeg' %}">
-    
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260505a">
+
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260515b">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -79,7 +91,10 @@
         </div>
     </footer>
 
-    <script src="{% static 'js/main.js' %}?v=20260505a"></script>
+    <!-- Back to top -->
+    <button class="back-top" id="back-top" aria-label="Back to top">&#8593;</button>
+
+    <script src="{% static 'js/main.js' %}?v=20260515b"></script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>
