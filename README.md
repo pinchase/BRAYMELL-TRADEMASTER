@@ -1,6 +1,6 @@
 # Braymell Website
 
-![Braymells](backend/core/static/images/logo.jpeg)
+![Braymells](core/static/images/logo.jpeg)
 
 > A modern Django web application for Braymell's public-facing website and comprehensive admin-managed portfolio content management system.
 
